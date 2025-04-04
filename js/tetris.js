@@ -279,6 +279,10 @@ export default class Tetris {
     }
     this.score += s
     this.scoreScreen.innerText = this.score
+    if (this.score >= 30 && !this.alertedThirty) {
+      alert("30점을 달성했어!!\n\n'수뭉이와함께라면' 이 단어를 입력해줘!")
+      this.alertedThirty = true
+    }
     this.makeNewBlock()
   }
 

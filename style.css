@@ -12,11 +12,12 @@ body {
 }
 
 .container {
-  background-color: sandybrown;
-  background-image: url(./img//background.png);
-  background-size: cover;
+  background-image: url(./img//background2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   width: 700px;
-  height: 700px;
+  height: 630px;
   margin: 3em;
   display: flex;
   flex-direction: row;
