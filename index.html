@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>테트리스</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="popup">
+        게임종료
+        <button class="restart">다시시작</button>
+      </div>
+
+      <div class="level_container">
+        <p>SPEED</p>
+        <div class="level"></div>
+      </div>
+
+      <div class="board">
+        <div class="header">
+          <p>score</p>
+          <p class="score">0</p>
+        </div>
+        <table class="stage_container">
+          <tbody class="stage"></tbody>
+        </table>
+      </div>
+
+      <div class="next"></div>
+    </div>
+  </body>
+</html>
