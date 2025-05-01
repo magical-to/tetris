@@ -12,6 +12,8 @@ export default class Tetris {
     this.duration = 1000
     this.time = 1
     this.timeInterval = undefined
+    this.holdBlock = null
+    this.canHold = true
 
     //dom
     this.stage = document.querySelector('.stage')
@@ -48,6 +50,9 @@ export default class Tetris {
         case 32:
           this.dropBlock()
           break
+        case 67:
+          this.hold()
+          break
         default:
           break
       }
@@ -56,6 +61,39 @@ export default class Tetris {
     restart.addEventListener('click', () => {
       this.reStart()
     })
+  }
+
+  hold() {
+    if (!this.canHold) return
+
+    clearInterval(this.downInterval)
+
+    // 🟢 현재 화면의 블록 먼저 제거
+    const movingBlocks = document.querySelectorAll('.moving')
+    movingBlocks.forEach((block) => {
+      block.classList.remove(this.blockInfo.type, 'moving')
+    })
+
+    if (this.holdBlock === null) {
+      this.holdBlock = this.blockInfo.type
+      this.makeNewBlock()
+    } else {
+      const temp = this.blockInfo.type
+      this.blockInfo = {
+        type: this.holdBlock,
+        direction: 0,
+        n: 0,
+        m: 3,
+      }
+      this.movingBlock = { ...this.blockInfo }
+      this.holdBlock = temp
+      this.renderBlock()
+      this.checkNextBlock('start')
+    }
+
+    // 🟢 그 후 hold 영역 렌더링
+    this.renderHoldBlock()
+    this.canHold = false
   }
 
   init() {
@@ -164,6 +202,15 @@ export default class Tetris {
     this.blockInfo.direction = direction
   }
 
+  renderHoldBlock() {
+    const hold = document.querySelector('.hold-block')
+    if (!this.holdBlock) {
+      hold.innerHTML = ''
+      return
+    }
+    hold.innerHTML = `<img class='tetris' src="./img/${this.holdBlock}.png" alt=${this.holdBlock}"/>`
+  }
+
   moveBlock(where, amount) {
     this.movingBlock[where] += amount
     this.checkNextBlock(where)
@@ -239,6 +286,7 @@ export default class Tetris {
       block.classList.add('finish')
     })
     playDrop()
+    this.canHold = true
     this.breakBlock()
   }
 

@@ -78,6 +78,7 @@ body {
   flex-direction: column;
   width: 100px;
   align-items: center;
+  margin-top: 20px;
 }
 .tetris:first-child {
   width: 100px;
@@ -144,4 +145,18 @@ body {
 }
 .H {
   background-color: #ebd500;
+}
+
+.hold {
+  margin-top: 10rem;
+  text-align: center;
+}
+
+.hold-block {
+  width: 80px;
+  height: 80px;
+}
+
+.hold-block img {
+  width: 100%;
 }
